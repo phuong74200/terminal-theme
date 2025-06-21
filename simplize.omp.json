@@ -2,43 +2,60 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#37b24d",
+          "type": "session",
           "style": "plain",
-          "template": "@{{ .UserName }}",
-          "type": "session"
-        },
-        {
-          "foreground": "#4263eb",
+          "foreground": "green",
           "properties": {
-            "style": "agnoster_full",
-            "folder_separator_icon": "/",
-            "home_icon": ""
-          },
-          "style": "plain",
-          "template": " {{ .Path }}",
-          "type": "path"
+            "user_info": false,
+            "display_host": true
+          }
         },
         {
-          "foreground": "#7048e8",
+          "type": "path",
+          "style": "plain",
+          "foreground": "blue",
           "properties": {
-            "branch_icon": ""
-          },
-          "style": "plain",
-          "template": " <#DDB15F>git:</>{{ .HEAD }}<#DDB15F></>",
-          "type": "git"
+            "style": "folder"
+          }
         },
         {
+          "type": "git",
           "style": "plain",
-          "template": " >",
-          "type": "text"
+          "foreground": "green",
+          "properties": {
+            "display_status": true,
+            "display_stash_count": false,
+            "display_upstream_icon": false,
+            "prefix": " [",
+            "suffix": "]",
+            "status_colors_enabled": true,
+            "status_color_staged": "red",
+            "status_color_unstaged": "yellow",
+            "status_color_untracked": "yellow",
+            "status_color_default": "green"
+          }
         }
-      ],
-      "type": "prompt"
+      ]
+    },
+    {
+      "type": "rprompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "cyan",
+          "properties": {
+            "template": "{{ .HEAD }}{{ if .Working.Changed }}*{{ end }}",
+            "prefix": "► ",
+            "suffix": " ◄"
+          }
+        }
+      ]
     }
-  ],
-  "final_space": true,
-  "version": 2
+  ]
 }
